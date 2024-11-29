@@ -1,0 +1,15 @@
+<section id="experience" class="mb-16 bg-gray-200 p-8 rounded-lg">
+    <h2 class="text-3xl font-bold text-gray-800">Experiencia</h2>
+    {% for experience in experiences %}
+    <div class="mb-4">
+        <h3 class="text-xl font-bold">{{ experience.title }} - {{ experience.company }}</h3>
+        <p class="text-sm text-gray-600">{{ experience.start_date|date:"F Y" }} - 
+        {% if experience.end_date %}
+            {{ experience.end_date|date:"F Y" }}
+        {% else %}
+            Present
+        {% endif %}</p>
+        <p class="text-gray-600">{{ experience.description }}</p>
+    </div>
+    {% endfor %}
+</section>

@@ -1,0 +1,15 @@
+<section id="education" class="mb-16 bg-gray-200 p-8 rounded-lg">
+    <h2 class="text-3xl font-bold text-gray-800">Educación</h2>
+    {% for education in educations %}
+    <div class="mb-4">
+        <h3 class="text-xl font-bold">{{ education.title }} - {{ education.place_studies }}</h3>
+        <p class="text-sm text-gray-600">{{ education.start_date|date:"F Y" }} - 
+        {% if education.end_date %}
+            {{ education.end_date|date:"F Y" }}
+        {% else %}
+            Present
+        {% endif %}</p>
+        <p class="text-gray-600">{{ education.description }}</p>
+    </div>
+    {% endfor %}
+</section>

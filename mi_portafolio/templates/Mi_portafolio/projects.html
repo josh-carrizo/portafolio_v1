@@ -1,0 +1,17 @@
+<section id="projects" class="mb-16">
+    <h2 class="text-3xl font-bold text-gray-800">Proyectos</h2>
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for project in projects %}
+        <div class="bg-gray-100 p-6 rounded-lg shadow-lg overflow-hidden">
+            {% if project.image %}
+            <a href="{{ project.url }}" target="_blank" class="block rounded-lg mb-4 transition-transform duration-300 hover:scale-110">
+                <img src="{{ project.image.url }}" class="rounded-lg w-full h-auto" alt="{{ project.title }}">
+            </a>
+            {% endif %}
+            <h3 class="text-xl font-bold text-gray-800">{{ project.title }}</h3>
+            <p class="mt-2 text-gray-600">{{ project.description }}</p>
+            <a href="{{ project.url }}" class="text-blue-500 hover:underline" target="_blank">View Project</a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
