@@ -1,6 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Experience, Project, Education
-from django.core.mail import send_mail
 from .forms import ContactForm
 
 # Create your views here.
@@ -15,17 +14,15 @@ def home(request):
         'educations': educations
     })
 
-def contact(request):
+
+def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            send_mail(
-                f"Mensaje de {form.cleaned_data['name']}",
-                form.cleaned_data['message'],
-                form.cleaned_data['email'],
-                ['tu_correo@gmail.com']
-            )
-            return render(request, 'Mi_portafolio/success.html')
-    else:
-        form = ContactForm()
-    return render(request, 'Mi_portafolio/contact.html', {'form': form})
+            form.save()
+            return redirect('contact_success') 
+
+    return redirect('home')
+
+def contact_success(request):
+    return render(request, 'Mi_portafolio/contact_success.html')
